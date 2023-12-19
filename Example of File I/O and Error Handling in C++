@@ -1,0 +1,36 @@
+#include <iostream>
+#include <fstream>
+
+int main() {
+    std::ifstream inFile; // Input file stream for reading
+    std::ofstream outFile; // Output file stream for writing
+
+    // Open a file for reading
+    inFile.open("input.txt");
+    if (!inFile.is_open()) {
+        std::cerr << "Error opening input file!" << std::endl;
+        return 1; // Exit the program indicating an error
+    }
+
+    // Open a file for writing
+    outFile.open("output.txt");
+    if (!outFile.is_open()) {
+        std::cerr << "Error opening output file!" << std::endl;
+        inFile.close(); // Close the input file
+        return 1; // Exit the program indicating an error
+    }
+
+    // Read from the input file and write to the output file
+    std::string line;
+    while (std::getline(inFile, line)) {
+        outFile << line << std::endl;
+    }
+
+    // Close both files
+    inFile.close();
+    outFile.close();
+
+    std::cout << "File copied successfully!" << std::endl;
+
+    return 0; // Exit the program successfully
+}
